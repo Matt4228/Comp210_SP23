@@ -5,6 +5,6 @@ import assn02.ProductBatch;
 public interface ProductionInt {
     boolean add(ProductBatch batch);
     void search(String date, String time);
-    void printAll();
+    String printAll();
     int getSize();
 }

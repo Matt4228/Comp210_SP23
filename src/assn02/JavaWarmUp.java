@@ -1,12 +1,14 @@
 package assn02;
 
+import assn01.BatchesLL;
+
 import java.util.LinkedList;
 import java.util.Iterator;
 import java.util.Scanner;
 
 
 public class JavaWarmUp {
-    static LinkedList<ProductBatch> batches = new LinkedList<>();
+    static BatchesLL batches = new BatchesLL();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -25,11 +27,13 @@ public class JavaWarmUp {
                     fee, quant, duration, cost);
             batches.add(nextBatch);
         }
-        Iterator i = batches.iterator();
-        do {
-            System.out.println(((ProductBatch) i));
-            System.out.println(((ProductBatch) i).printBatch());
-        } while (i.hasNext());
+
+        System.out.println(" 1 " + batches.printAll());
+        //Iterator i = batches.iterator();
+        //do {
+        //    System.out.println(((ProductBatch) i));
+        //    System.out.println(((ProductBatch) i).printBatch());
+        //} while (i.hasNext());
         //prints highest unit assembly fee
         //prints lowest per unit assembly fee
         //statistic of phone
