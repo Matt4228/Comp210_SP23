@@ -1,7 +1,5 @@
 package assn02;
 
-import assn01.ProductionInt;
-
 public class ProductBatch{
     //input class fields
     private String _date;

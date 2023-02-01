@@ -1,9 +1,6 @@
-package assn01;
-
-import assn02.ProductBatch;
+package assn02;
 
 import java.util.LinkedList;
-import java.util.Iterator;
 
 public class BatchesLL implements ProductionInt {
     public LinkedList<ProductBatch> batches = new LinkedList<>();

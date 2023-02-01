@@ -1,6 +1,4 @@
-package assn01;
-
-import assn02.ProductBatch;
+package assn02;
 
 public interface ProductionInt {
     boolean add(ProductBatch batch);

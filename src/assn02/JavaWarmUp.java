@@ -1,9 +1,5 @@
 package assn02;
 
-import assn01.BatchesLL;
-
-import java.util.LinkedList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 
