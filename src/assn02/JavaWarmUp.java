@@ -134,13 +134,13 @@ public class JavaWarmUp {
 
 
     public static void print(ProductBatch[] batchesArr) {
-        System.out.println("Highest per unit assembly fee:");
+        System.out.println("Highest per unit assembling fee:");
         ProductBatch high = batchesLL.getFirst();
         System.out.println("\tWhen: " + high.getDate() + " " + high.getTime());
         System.out.println("\tCategory: " + high.getType());
         System.out.println("\tPrice: " + high.getFee());
 
-        System.out.println("Lowest per unit assembly fee:");
+        System.out.println("Lowest per unit assembling fee:");
         ProductBatch low = batchesLL.getLast();
         System.out.println("\tWhen: " + low.getDate() + " " + low.getTime());
         System.out.println("\tCategory: " + low.getType());
