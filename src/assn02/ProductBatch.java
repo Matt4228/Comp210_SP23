@@ -97,6 +97,7 @@ public class ProductBatch{
         return _cost;
     }
 
+    //returns batch data in the format it was given
     public String printBatch() {
         return _date + " " + _time + " " + _type + " " + _fee + " " + _quant + " " + _duration + " " + _cost;
     }

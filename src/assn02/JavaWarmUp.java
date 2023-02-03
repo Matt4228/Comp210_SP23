@@ -10,23 +10,34 @@ public class JavaWarmUp {
     static LinkedList<ProductBatch> batchesLL = new LinkedList<>();
 
     public static void main(String[] args) {
+        //method takes input from the console and adds it to a sorted LinkedList
         getInput();
 
+        //just to really warm up for data structures I chose to work with data as a list and as an array
         ProductBatch[] batchesArr = new ProductBatch[batchesLL.size()];
 
+        //copies the sorted list to the array
         populateArr(batchesArr);
 
+        //debugging method for testing LinkedList insertions
         //testPrint();
 
+        //processes and prints the data
         print(batchesArr);
 
     }
 
+
     public static void getInput() {
         Scanner sc = new Scanner(System.in);
 
+        //data is given in the following format:
         //9/21/22 14:34 laptop 49.36 1525 1044.6 1779
+
+
         int ListLength = sc.nextInt();
+
+        //defines the fields for each ProductBatch and then adds it to the LL
         for(int i = 0; i < ListLength; i++) {
             String date = sc.next();
             String time = sc.next();
@@ -41,11 +52,18 @@ public class JavaWarmUp {
         }
     }
 
+    /**
+     * sorts the data on insert based on fee in descending order
+     * @param batch
+     */
     public static void sortedAdd(ProductBatch batch) {
         Iterator j = batchesLL.iterator();
+
+        //empty LL case
         if(batchesLL.size() == 0) {
             batchesLL.add(batch);
         } else {
+            //highest < the fee of batch j < lowest
             int index = 0;
             while(j.hasNext()) {
                 if(((ProductBatch) j.next()).getFee() < batch.getFee()) {
@@ -55,11 +73,16 @@ public class JavaWarmUp {
                 index++;
             }
         }
+        //tail case
         if(!j.hasNext()) {
             batchesLL.add(batch);
         }
     }
 
+    /**
+     * copies the LL data to the Array implementation
+     * @param batchesArr
+     */
     public static void populateArr(ProductBatch[] batchesArr) {
         Iterator k = batchesLL.iterator();
         int index = 0;
@@ -70,6 +93,12 @@ public class JavaWarmUp {
     }
 
 
+    /**
+     * finds a statistic for the total quantity based on type
+     * @param batchesArr
+     * @param targetType
+     * @return
+     */
     public static int getQuantity(ProductBatch[] batchesArr, String targetType) {
         int quantity = 0;
         for(ProductBatch batch: batchesArr) {
@@ -80,6 +109,12 @@ public class JavaWarmUp {
         return quantity;
     }
 
+    /**
+     * finds a statistic for the average assembling fee based on type
+     * @param batchesArr
+     * @param targetType
+     * @return
+     */
     public static double getAvgFee(ProductBatch[] batchesArr, String targetType) {
         double weightedTotal = 0;
         int quantity = 0;
@@ -93,6 +128,12 @@ public class JavaWarmUp {
         return ( weightedTotal/quantity);
     }
 
+    /**
+     * finds a statistic for the average net profit per unit based on type
+     * @param batchesArr
+     * @param targetType
+     * @return
+     */
     public static double getAvgNetProfit(ProductBatch[] batchesArr, String targetType) {
         double totalFee = 0;
         double totalWages = 0;
@@ -110,10 +151,7 @@ public class JavaWarmUp {
         return (rawANP);
     }
 
-
-
-
-
+    //prints the contents of the linked list to test sorting algorithm
     public static void testPrint() {
         Iterator i = batchesLL.iterator();
         while(i.hasNext()) {
@@ -121,18 +159,11 @@ public class JavaWarmUp {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    //print method
+    //refactoring notes:
+    //the highest and lowest are relatively close to being efficient
+    //the statistic pieces should be refactored to use loops to simplify the code
+    //ideally I would collect all the necessary data for each statistic in one iteration on the list
     public static void print(ProductBatch[] batchesArr) {
         System.out.println("Highest per unit assembling fee:");
         ProductBatch high = batchesLL.getFirst();
