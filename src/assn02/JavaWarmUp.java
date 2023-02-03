@@ -90,7 +90,7 @@ public class JavaWarmUp {
             }
         }
 
-        return ( ((int)(100 * weightedTotal/quantity))/100.0 );
+        return ( weightedTotal/quantity);
     }
 
     public static double getAvgNetProfit(ProductBatch[] batchesArr, String targetType) {
@@ -107,7 +107,7 @@ public class JavaWarmUp {
             }
         }
         double rawANP = (totalFee - totalWages - totalCost)/quantity;
-        return ( ((int)(100 * rawANP))/100.0 );
+        return (rawANP);
     }
 
 
@@ -148,18 +148,18 @@ public class JavaWarmUp {
 
         System.out.println("Statistic of phone");
         System.out.println("\tQuantity: " + getQuantity(batchesArr, "phone"));
-        System.out.println("\tAverage Assembling fee: " + getAvgFee(batchesArr, "phone"));
-        System.out.println("\tAverage Net Profit: " + getAvgNetProfit(batchesArr, "phone"));
+        System.out.println("\tAverage Assembling fee: " + String.format("%.2f", getAvgFee(batchesArr, "phone")));
+        System.out.println("\tAverage Net Profit: " + String.format("%.2f", getAvgNetProfit(batchesArr, "phone")));
 
         System.out.println("Statistic of laptop");
         System.out.println("\tQuantity: " + getQuantity(batchesArr, "laptop"));
-        System.out.println("\tAverage Assembling fee: " + getAvgFee(batchesArr, "laptop"));
-        System.out.println("\tAverage Net Profit: " + getAvgNetProfit(batchesArr, "laptop"));
+        System.out.println("\tAverage Assembling fee: " + String.format("%.2f", getAvgFee(batchesArr, "laptop")));
+        System.out.println("\tAverage Net Profit: " + String.format("%.2f", getAvgNetProfit(batchesArr, "laptop")));
 
         System.out.println("Statistic of smart_watch");
         System.out.println("\tQuantity: " + getQuantity(batchesArr, "smart_watch"));
-        System.out.println("\tAverage Assembling fee: " + getAvgFee(batchesArr, "smart_watch"));
-        System.out.println("\tAverage Net Profit: " + getAvgNetProfit(batchesArr, "smart_watch"));
+        System.out.println("\tAverage Assembling fee: " + String.format("%.2f", getAvgFee(batchesArr, "smart_watch")));
+        System.out.println("\tAverage Net Profit: " + String.format("%.2f", getAvgNetProfit(batchesArr, "smart_watch")));
     }
 
 
