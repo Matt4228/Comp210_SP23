@@ -106,6 +106,8 @@ public class LinkedList<T> {
                 }
                 if(current.getNext() != tail) {
                     current = current.getNext();
+                } else {
+                    break;
                 }
 
             }
