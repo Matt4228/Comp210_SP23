@@ -21,6 +21,20 @@ public class LinkedList<T> {
      * @param i    - index of node to remove
      */
     public void removeAtIndex(int i) {
+        validIndex(i);
+        if (i == 0) {
+            remove(head);
+        } else if (i == size - 1) {
+            remove(tail);
+        } else {
+            Node<T> current = head;
+            int j = 0;
+            while (j < i) {
+                current = current.getNext();
+                i++;
+            }
+            remove(current);
+        }
     }
 
 
