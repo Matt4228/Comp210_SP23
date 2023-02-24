@@ -181,7 +181,11 @@ public class LinkedList<T> {
             }
             if(current2 != null) {
                 current1.setNext(current2);
+                if(next1 != null) {
+                    current2.setNext(next2);
+                }
             }
+
         }
 
     }
