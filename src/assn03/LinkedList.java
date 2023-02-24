@@ -23,18 +23,26 @@ public class LinkedList<T> {
     public void removeAtIndex(int i) {
         validIndex(i);
         if (i == 0) {
-            remove(head);
+            Node<T> current = head;
+            head = current.getNext();
+            size--;
         } else if (i == size - 1) {
-            remove(tail);
+            Node<T> current = head;
+            for(int j = 0; j < i-1; j++) {
+                current = current.getNext();
+            }
+            current.setNext(null);
+            tail = current;
+            size--;
         } else {
             Node<T> current = head;
-            int j = 0;
-            while (j < i) {
+            for(int j = 0; j < i-1; j++) {
                 current = current.getNext();
-                i++;
             }
-            remove(current);
+            current.setNext(current.getNext().getNext());
+            size--;
         }
+
     }
 
 

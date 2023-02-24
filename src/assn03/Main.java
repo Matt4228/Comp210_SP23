@@ -7,13 +7,15 @@ public class Main {
         list.add(1);
         list.add(2);
         list.add(3);
+        list.add(4);
+        list.add(5);
+        list.add(6);
+        list.removeAtIndex(0);
+        list.removeAtIndex(3);
+        list.removeAtIndex(list.size()-1);
 
-        LinkedList list2 = new LinkedList();
-        list2.add(1);
-        list2.add(2);
-        list2.add(3);
 
 
-        System.out.println(list.isEqual(list2));
+        System.out.println(list.toString());
     }
 }
