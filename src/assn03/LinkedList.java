@@ -93,6 +93,23 @@ public class LinkedList<T> {
      *
      */
     public void removeRepeats() {
+        Node<T> current = head;
+        if(!isEmpty()) {
+            while(current.hasNext()) {
+                if(current.getValue() == current.getNext().getValue()) {
+                    if(current.getNext() == tail) {
+                        current.setNext(null);
+                        tail = current;
+                    } else {
+                        current.setNext(current.getNext().getNext());
+                    }
+                }
+                if(current.getNext() != tail) {
+                    current = current.getNext();
+                }
+
+            }
+        }
     }
 
 
