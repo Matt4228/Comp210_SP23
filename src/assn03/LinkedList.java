@@ -64,7 +64,20 @@ public class LinkedList<T> {
      * @return true if the lists have the same elements in the same order, false otherwise
      */
     public boolean isEqual(LinkedList list2) {
-        return false;
+        if(size == list2.size()) {
+            Node<T> current1 = head;
+            Node<T> current2 = list2.getHead();
+            while(current1.hasNext()) {
+                if(current1.getValue() != current2.getValue()) {
+                    return false;
+                }
+                current1 = current1.getNext();
+                current2 = current2.getNext();
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

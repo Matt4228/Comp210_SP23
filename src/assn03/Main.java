@@ -11,8 +11,6 @@ public class Main {
         list.add(5);
         list.add(6);
         list.removeAtIndex(0);
-        list.removeAtIndex(3);
-        list.removeAtIndex(list.size()-1);
 
 
 
