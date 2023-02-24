@@ -181,10 +181,41 @@ public class LinkedList<T> {
             }
             if(current2 != null) {
                 current1.setNext(current2);
-                if(next1 != null) {
-                    current2.setNext(next2);
+
+            }
+            if(next1 != null) {
+                current2.setNext(next2);
+            }
+
+        }
+
+    }
+
+    public void merge2(LinkedList list2) {
+        if(!isEmpty() && !list2.isEmpty()) {
+            Node<T> previous = head;
+            Node<T> insertion = list2.getHead();
+            Node<T> next = previous.getNext();
+            Node<T> next2 = null;
+            while(insertion.hasNext()) {
+                next2 = insertion.getNext();
+                previous.setNext(insertion);
+                insertion.setNext(next);
+                previous = next;
+                next = next.getNext();
+                insertion = next2;
+                size++;
+            }
+            if(insertion != null) {
+                previous.setNext(insertion);
+                if(next != null) {
+                    insertion.setNext(next);
                 }
             }
+            if(next != null) {
+                insertion.setNext(next);
+            }
+
 
         }
 
