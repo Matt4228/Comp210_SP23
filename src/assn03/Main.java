@@ -13,7 +13,7 @@ public class Main {
         LinkedList list2 = new LinkedList<Character>();
         list2.add('3');
         list2.add('4');
-        list.merge2(list2);
+        list.merge(list2);
 
 
 
