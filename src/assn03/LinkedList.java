@@ -166,6 +166,22 @@ public class LinkedList<T> {
      * @param list2
      */
     public void merge(LinkedList list2) {
+        Node<T> current1 = head;
+        Node<T> current2 = list2.getHead();
+        Node<T> next1 = current1.getNext();
+        Node<T> next2 = current2.getNext();
+        while(current1.hasNext() && current2.hasNext()) {
+            current1.setNext(current2);
+            current2.setNext(next1);
+            current1=next1;
+            current2=next2;
+            next1 = next1.getNext();
+            next2 = next2.getNext();
+        }
+        if(current2 != null) {
+            current1.setNext(current2);
+        }
+
     }
 
 
