@@ -53,6 +53,8 @@ public class NonEmptyBST<T extends Comparable<T>> implements BST<T> {
 					return _left;
 				}
 			}
+		} else {
+			return this;
 		}
 
 
