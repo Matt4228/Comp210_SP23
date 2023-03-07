@@ -41,18 +41,26 @@ public class NonEmptyBST<T extends Comparable<T>> implements BST<T> {
 	// TODO: remove
 	@Override
 	public BST<T> remove(T element) {
-		if(_left.isEmpty() && _right.isEmpty()) {
-			return new EmptyBST<T>();
+		if(element.compareTo(_element) == 0) {
+			if(_left.isEmpty() && _right.isEmpty()) {
+				return new EmptyBST<T>();
+			} else if (!_left.isEmpty() && !_right.isEmpty()) {
+				return this;
+			} else {
+				if(_left.isEmpty()) {
+					return _right;
+				} else {
+					return _left;
+				}
+			}
 		}
-		else {
-			return this;
-		}
+
 
 
 	}
 
 	public BST<T> findParent(T element) {
-
+		return this;
 	}
 
 	// TODO: printPreOrderTraversal
