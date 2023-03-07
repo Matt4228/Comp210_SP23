@@ -41,7 +41,8 @@ public class NonEmptyBST<T extends Comparable<T>> implements BST<T> {
 	// TODO: remove
 	@Override
 	public BST<T> remove(T element) {
-		if(_element)
+
+		return this;
 
 	}
 
