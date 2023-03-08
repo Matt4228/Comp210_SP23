@@ -77,7 +77,7 @@ public class NonEmptyBST<T extends Comparable<T>> implements BST<T> {
 	@Override
 	public void printPreOrderTraversal() {
 		//print root, left, right
-		System.out.println(_element.toString() + " ");
+		System.out.print(_element.toString() + " ");
 		if(!_left.isEmpty()) {
 			_left.printPreOrderTraversal();
 		}
@@ -103,7 +103,7 @@ public class NonEmptyBST<T extends Comparable<T>> implements BST<T> {
 
 	public void BFTHelper(BST<T> node, int depth) {
 		if (depth == 0) {
-			System.out.println(node.getElement().toString());
+			System.out.print(node.getElement().toString() + " ");
 		}
 		else {
 			if(!node.getLeft().isEmpty()){
