@@ -12,7 +12,7 @@ public class Main {
       bst = bst.insert(9);
       bst = bst.insert(4);
       bst = bst.insert(2);
-      bst.printBreadthFirstTraversal();
+      bst.printPostOrderTraversal();
 
       System.out.println("\n\n\n");
 

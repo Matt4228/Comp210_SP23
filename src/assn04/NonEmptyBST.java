@@ -89,7 +89,13 @@ public class NonEmptyBST<T extends Comparable<T>> implements BST<T> {
 	// TODO: printPostOrderTraversal
 	@Override
 	public void printPostOrderTraversal() {
-
+		if(!_left.isEmpty()) {
+			_left.printPostOrderTraversal();
+		}
+		if(!_right.isEmpty()) {
+			_right.printPostOrderTraversal();
+		}
+		System.out.print(_element.toString() + " ");
 	}
 
 	// TODO: printBreadthFirstTraversal
