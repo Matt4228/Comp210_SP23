@@ -41,29 +41,37 @@ public class NonEmptyBST<T extends Comparable<T>> implements BST<T> {
 	// TODO: remove
 	@Override
 	public BST<T> remove(T element) {
-		if(element.compareTo(_element) == 0) {
-			if(_left.isEmpty() && _right.isEmpty()) {
-				return new EmptyBST<T>();
-			} else if (!_left.isEmpty() && !_right.isEmpty()) {
-				return this;
-			} else {
-				if(_left.isEmpty()) {
-					return _right;
-				} else {
-					return _left;
-				}
-			}
+		if (_element.compareTo(element) < 0) {
+			_left = _left.remove(element);
+		} else if (_element.compareTo(element) > 0) {
+			_right = _right.remove(element);
 		} else {
-			return this;
+			if (_left.isEmpty()) {
+				return _right;
+			} else if (_right.isEmpty()) {
+				return _left;
+			}
+
+			_element = findMin(_right);
+
+			_right.remove(_element);
 		}
-
-
-
-	}
-
-	public BST<T> findParent(T element) {
 		return this;
 	}
+
+	private BST<T> removeHelper(BST<T> node, T element) {
+		return this;
+	}
+
+	public T findMin(BST<T> node) {
+		T min = node.getElement();
+		while(!node.getLeft().isEmpty()) {
+			min = node.getLeft().getElement();
+			node = node.getLeft();
+		}
+		return min;
+	}
+
 
 	// TODO: printPreOrderTraversal
 	@Override

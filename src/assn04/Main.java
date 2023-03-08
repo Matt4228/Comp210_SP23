@@ -14,6 +14,11 @@ public class Main {
       bst = bst.insert(2);
       bst.printBreadthFirstTraversal();
 
+      System.out.println("\n\n\n");
+
+      bst = bst.remove(3);
+      bst.printBreadthFirstTraversal();
+
   }
 
 }
