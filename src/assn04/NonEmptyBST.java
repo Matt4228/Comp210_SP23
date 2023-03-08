@@ -52,25 +52,13 @@ public class NonEmptyBST<T extends Comparable<T>> implements BST<T> {
 				return _left;
 			}
 
-			_element = findMin(_right);
+			_element = _right.getElement();
 
-			_right.remove(_element);
+			_right = _right.remove(_element);
 		}
 		return this;
 	}
 
-	private BST<T> removeHelper(BST<T> node, T element) {
-		return this;
-	}
-
-	public T findMin(BST<T> node) {
-		T min = node.getElement();
-		while(!node.getLeft().isEmpty()) {
-			min = node.getLeft().getElement();
-			node = node.getLeft();
-		}
-		return min;
-	}
 
 
 	// TODO: printPreOrderTraversal

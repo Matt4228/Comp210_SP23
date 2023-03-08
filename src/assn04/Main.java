@@ -16,7 +16,7 @@ public class Main {
 
       System.out.println("\n\n\n");
 
-      bst = bst.remove(3);
+      bst = bst.remove(2);
       bst.printBreadthFirstTraversal();
 
   }
