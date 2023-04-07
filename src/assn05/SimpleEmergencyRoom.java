@@ -16,6 +16,7 @@ public class SimpleEmergencyRoom {
     	for(int i = 1; i < patients.size(); i++) {
     	    if(patients.get(i).getPriority().compareTo(nextPatient.getPriority()) > 0 ) {
     	        nextPatient = patients.get(i);
+    	        patients.remove(i);
             }
         }
     	return nextPatient;
