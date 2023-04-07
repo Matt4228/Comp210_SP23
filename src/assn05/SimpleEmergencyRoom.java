@@ -13,12 +13,15 @@ public class SimpleEmergencyRoom {
     // TODO: dequeue
     public Patient dequeue() {
     	Patient nextPatient = patients.get(0);
-    	for(int i = 1; i < patients.size(); i++) {
+    	int s = patients.size();
+    	int j = 0;
+    	for(int i = 1; i < s; i++) {
     	    if(patients.get(i).getPriority().compareTo(nextPatient.getPriority()) > 0 ) {
     	        nextPatient = patients.get(i);
-    	        patients.remove(i);
+    	        j=i;
             }
         }
+    	patients.remove(j);
     	return nextPatient;
     }
 

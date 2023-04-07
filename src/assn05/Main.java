@@ -7,6 +7,15 @@ public class Main {
         /*
         Part 1 - Write some tests to convince yourself that your code for Part 1 is working
          */
+        SimpleEmergencyRoom simp = new SimpleEmergencyRoom();
+        fillERless(simp);
+        int s = simp.size();
+        for(int i = 0; i < s; i++) {
+            Patient p = simp.dequeue();
+            System.out.println("Value: " + p.getValue()
+                    + ", Priority: " + p.getPriority());
+        }
+
 
 
 
@@ -24,12 +33,7 @@ public class Main {
         /*
         Part 3
          */
-        MaxBinHeapER transfer = new MaxBinHeapER(makePatients());
-        Prioritized[] arr = transfer.getAsArray();
-        for(int i = 0; i < transfer.size(); i++) {
-            System.out.println("Value: " + arr[i].getValue()
-                    + ", Priority: " + arr[i].getPriority());
-        }
+
 
     }
 
@@ -40,6 +44,12 @@ public class Main {
     }
     public static void fillER(SimpleEmergencyRoom simpleER) {
         for(int i = 0; i < 100000; i++) {
+            simpleER.addPatient(i);
+        }
+    }
+
+    public static void fillERless(SimpleEmergencyRoom simpleER) {
+        for(int i = 0; i < 20; i++) {
             simpleER.addPatient(i);
         }
     }
