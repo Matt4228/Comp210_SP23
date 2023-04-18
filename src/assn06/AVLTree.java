@@ -111,7 +111,7 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
         }
 
         if (balance < -1 && element.compareTo(_right.getValue()) > 0) {
-            return rotateRight();
+            return rotateLeft();
         }
 
         if (balance > 1 && element.compareTo(_left.getValue()) > 0) {
@@ -132,7 +132,7 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
         } else if (_left != null) {
             return _left.height();
         } else {
-            return _right.height();
+            return -1 * _right.height();
         }
     }
 
