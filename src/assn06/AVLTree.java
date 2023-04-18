@@ -104,7 +104,7 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
         }
 
         int balance = getBalance();
-        System.out.println(_value + " " + balance);
+        //System.out.println(_value + " " + balance);
 
         if (balance > 1 && element.compareTo(_left.getValue()) < 0) {
             return rotateRight();
