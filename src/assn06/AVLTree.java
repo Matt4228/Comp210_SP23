@@ -72,39 +72,67 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
     @Override
     public SelfBalancingBST<T> insert(T element) {
         // TODO
+
+
         if(isEmpty()) {
             _value = element;
-            _size++;
             _height++;
-        } else {
-            //System.out.println("ping");
-            if(_value.compareTo(element) <= 0) {
-                //System.out.println("ping right " + element);
-                if(_right == null) {
-                    _right = new AVLTree<T>();
-                }
-                _size++;
-                _right.insert(element);
-
-            } else {
-                //System.out.println("ping left " + element);
-                if(_left == null) {
-                    //System.out.println("bonk");
-                    _left = new AVLTree<T>();
-                }
-                _size++;
-                _left.insert(element);
-            }
+            _size++;
+            return this;
         }
 
+        _size++;
+
+        if(element.compareTo(_value) <= 0) {
+            if(_left == null) {
+                _left = new AVLTree<T>();
+            }
+            _left = (AVLTree<T>) _left.insert(element);
+        } else {
+            if(_right == null) {
+                _right = new AVLTree<T>();
+            }
+            _right = (AVLTree<T>) _right.insert(element);
+        }
+
+        if(_left != null && _right != null) {
+            _height = Math.max(_left.height(), _right.height()) + 1;
+        } else if (_left != null){
+            _height = _left.height() + 1;
+        } else {
+            _height = _right.height() + 1;
+        }
+
+        int balance = getBalance();
+        System.out.println(_value + " " + balance);
+
+        if (balance > 1 && element.compareTo(_left.getValue()) < 0) {
+            return rotateRight();
+        }
+
+        if (balance < -1 && element.compareTo(_right.getValue()) > 0) {
+            return rotateRight();
+        }
+
+        if (balance > 1 && element.compareTo(_left.getValue()) > 0) {
+            _left = _left.rotateLeft();
+            return rotateRight();
+        }
+
+        if (balance < -1 && element.compareTo(_left.getValue()) < 0) {
+            _right = _right.rotateRight();
+            return rotateLeft();
+        }
         return this;
     }
 
     public int getBalance() {
-        if (isEmpty()) {
-            return 0;
-        } else {
+        if(_left != null && _right != null) {
             return _left.height() - _right.height();
+        } else if (_left != null) {
+            return _left.height();
+        } else {
+            return _right.height();
         }
     }
 
