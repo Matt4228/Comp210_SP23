@@ -136,43 +136,139 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
     @Override
     public SelfBalancingBST<T> remove(T element) {
         // TODO
-        if(isEmpty()) {
-            return this;
-        }
-        _size--;
-        if (_value.compareTo(element) > 0) {
-            _left.remove(element);
-        } else if (_value.compareTo(element) < 0) {
-            _right.remove(element);
-        } else {
-            AVLTree<T> target = null;
-            if(_left == null || _right == null) {
-
-                if (_left == null) {
-                    target = _right;
+        if (contains(element)) {
+            _size--;
+            if(_value.compareTo(element) == 0) {
+                if (_left != null && _right != null) {
+                    T replacement = _right.getValue();
+                    _value = replacement;
+                    _right = (AVLTree<T>) _right.remove(replacement);
+                } else if (_left != null) {
+                    return _left;
+                } else if (_right != null) {
+                    return _right;
                 } else {
-                    target = _left;
+                    return null;
                 }
-
+            } else if(_value.compareTo(element) > 0) {
+                _left = (AVLTree<T>) _left.remove(element);
             } else {
-                AVLTree temp = _right.findReplacementP();
-                _value = (T) temp.getValue();
-                _right.remove(_value);
-
+                _right = (AVLTree<T>) _right.remove(element);
             }
             updateHeight();
-            updateSize();
-            return target;
+
+            int balance = findBalance();
+
+            //imbalance primary right
+            if (balance > 1) {
+                if (element.compareTo(_right.getValue()) > 0) {
+                    return rotateLeft();
+                } else {
+                    _right = _right.rotateRight();
+                    return rotateLeft();
+                }
+            } //imbalance primary left
+            if (balance < -1) {
+                if (element.compareTo(_left.getValue()) <= 0) {
+                    return rotateRight();
+                } else {
+                    //System.out.println("pop");
+                    _left = _left.rotateLeft();
+                    return rotateRight();
+                }
+
+            }
+
         }
         return this;
     }
 
+
+
+    public AVLTree<T> removeHelper(AVLTree<T> root, T key) {
+        if (root == null) {
+            return root;
+        }
+
+        if (key.compareTo(root.getValue()) < 0) {
+            root.setLeft(removeHelper((AVLTree<T>) root.getLeft(), key));
+        } else if (key.compareTo(root.getValue()) > 0) {
+            root.setRight(removeHelper((AVLTree<T>) root.getRight(), key));
+        } else {
+            if (root.getLeft() == null || root.getRight() == null) {
+                AVLTree<T> temp = null;
+                if (temp == root.getLeft()) {
+                    temp = (AVLTree<T>) root.getRight();
+                } else {
+                    temp = (AVLTree<T>) root.getLeft();
+                }
+
+                if (temp == null) {
+                    temp = root;
+                    root = new AVLTree<T>();
+                } else {
+                    root = temp;
+                }
+            } else {
+                AVLTree<T> temp = minVal((AVLTree<T>) root.getRight());
+                root.setValue(temp.getValue());
+                root.setRight(removeHelper((AVLTree<T>) root.getRight(), temp.getValue()));
+            }
+        }
+        if (root == null) {
+            return null;
+        }
+
+        root.updateHeight();
+        root.updateSize();
+
+        int balance = root.findBalance();
+
+        if (balance > 1) {
+            if (key.compareTo(root.getRight().getValue()) > 0) {
+                return root.rotateLeft();
+            } else {
+                root.setRight(((AVLTree<T>) root.getRight()).rotateRight());
+                return root.rotateLeft();
+            }
+        } //imbalance primary left
+        if (balance < -1) {
+            if (key.compareTo(root.getLeft().getValue()) <= 0) {
+                return root.rotateRight();
+            } else {
+                //System.out.println("pop");
+                root.setLeft(((AVLTree<T>) root.getLeft()).rotateLeft());
+                return root.rotateRight();
+            }
+
+        }
+
+        return root;
+    }
+
+    public AVLTree<T> minVal(AVLTree<T> root) {
+        AVLTree<T> curr = root;
+        while(curr.getLeft() != null) {
+            curr = (AVLTree<T>) curr.getLeft();
+        }
+        return curr;
+    }
+
+    public void setValue(T val) {
+        _value = val;
+    }
+
+
+
     public AVLTree<T> findReplacementP() {
         if (_left == null) {
-            return this;
-        } else {
-            return _left.findReplacementP();
+            return null;
         }
+        AVLTree<T> minP = this;
+        while(_left.getLeft() != null) {
+            minP = (AVLTree<T>) minP.getLeft();
+        }
+        return minP;
     }
 
     @Override
@@ -272,12 +368,12 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
         if(_right != null && _left != null) {
             //System.out.println(_value + ": " + (_right.height() - _left.height()));
             return _right.height() - _left.height();
-        } else if (_left == null) {
+        } else if (_left != null) {
             //System.out.println(_value + ": " + (_right.height() + 1));
-            return _right.height() + 1;
-        } else if (_right == null) {
-            //System.out.println(_value + ":                 " + (-1* _left.height() - 1));
             return -1 * _left.height() - 1;
+        } else if (_right != null) {
+            //System.out.println(_value + ":                 " + (-1* _left.height() - 1));
+            return _right.height() + 1;
         } else {
             //System.out.println(_value + ": " + 0);
             return 0;
