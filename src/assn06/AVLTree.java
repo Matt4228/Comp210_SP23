@@ -148,23 +148,23 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
         int balance = getBalance();
         //System.out.println(_value + " " + balance);
 
-        if (balance >= 1 && element.compareTo(_left.getValue()) < 0) {
+        if (balance > 1 && element.compareTo(_left.getValue()) < 0) {
             System.out.println("LL");
             return rotateRight();
         }
 
-        if (balance <= -1 && element.compareTo(_right.getValue()) > 0) {
+        if (balance < -1 && element.compareTo(_right.getValue()) > 0) {
             System.out.println("LL");
             return rotateLeft();
         }
 
-        if (balance >= 1 && element.compareTo(_left.getValue()) > 0) {
+        if (balance > 1 && element.compareTo(_left.getValue()) > 0) {
             System.out.println("LR");
             _left = _left.rotateLeft();
             return rotateRight();
         }
 
-        if (balance <= -1 && element.compareTo(_left.getValue()) < 0) {
+        if (balance < -1 && element.compareTo(_right.getValue()) < 0) {
             System.out.println("RL");
             _right = _right.rotateRight();
             return rotateLeft();
@@ -252,6 +252,11 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
 
     public void setHeight(int i) {
         _height = i;
+    }
+
+    public void updateHeight(AVLTree<T> n) {
+        //int lHeight = n.getLeft().height();
+        //int rHeight
     }
 
 
