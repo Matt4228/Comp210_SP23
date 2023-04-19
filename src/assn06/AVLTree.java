@@ -136,7 +136,7 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
     @Override
     public SelfBalancingBST<T> remove(T element) {
         // TODO
-        return null;
+        throw new RuntimeException("Illegal operation on empty tree");
     }
 
     @Override
