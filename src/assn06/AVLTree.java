@@ -136,7 +136,43 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
     @Override
     public SelfBalancingBST<T> remove(T element) {
         // TODO
-        return new AVLTree<T>();
+        if(_value == null) {
+            return this;
+        }
+
+        if (_value.compareTo(element) > 0) {
+            _left.remove(element);
+        } else if (_value.compareTo(element) < 0) {
+            _right.remove(element);
+        } else {
+            AVLTree<T> target = null;
+            if(_left == null || _right == null) {
+
+                if (_left == null) {
+                    target = _right;
+                } else {
+                    target = _left;
+                }
+
+            } else {
+                AVLTree temp = _right.findReplacementP();
+                _value = (T) temp.getValue();
+                _right.remove(_value);
+
+            }
+            updateHeight();
+            updateSize();
+            return target;
+        }
+        return this;
+    }
+
+    public AVLTree<T> findReplacementP() {
+        if (_left == null) {
+            return this;
+        } else {
+            return _left.findReplacementP();
+        }
     }
 
     @Override
