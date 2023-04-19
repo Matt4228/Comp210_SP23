@@ -161,21 +161,25 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
 
             //imbalance primary right
             if (balance > 1) {
-                if (element.compareTo(_right.getValue()) <= 0) {
+                if (_right.findBalance() > 0) {
                     //RR
+                    System.out.println("rr");
                     return rotateLeft();
                 } else {
                     //RL
+                    System.out.println("rl");
                     _right = _right.rotateRight();
                     return rotateLeft();
                 }
             } //imbalance primary left
             if (balance < -1) {
                 //LL
-                if (element.compareTo(_left.getValue()) > 0) {
+                if (_left.findBalance() < 0) {
+                    System.out.println("ll");
                     return rotateRight();
                 } else {
                     //LR
+                    System.out.println("lr");
                     _left = _left.rotateLeft();
                     return rotateRight();
                 }
