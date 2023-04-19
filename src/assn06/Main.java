@@ -14,10 +14,10 @@ public class Main {
         //for (int i=0; i<50; i++) {
         //    avl_bst = avl_bst.insert((int) (Math.random()*100));
         //}
-        avl_bst = avl_bst.insert(20);
-        avl_bst = avl_bst.insert(11);
-        avl_bst = avl_bst.insert(50);
-        avl_bst = avl_bst.insert(4);
+        //avl_bst = avl_bst.insert(20);
+        //avl_bst = avl_bst.insert(11);
+        //avl_bst = avl_bst.insert(50);
+        //avl_bst = avl_bst.insert(4);
         //avl_bst = avl_bst.insert(6);
         //avl_bst = avl_bst.insert(15);
         //avl_bst = avl_bst.insert(3);
