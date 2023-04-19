@@ -144,7 +144,7 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
         if (isEmpty()) {
             throw new RuntimeException("Illegal operation on empty tree");
         }
-        if (_left.isEmpty()) {
+        if (_left == null) {
             return _value;
         } else {
             return _left.findMin();
@@ -156,7 +156,7 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
         if (isEmpty()) {
             throw new RuntimeException("Illegal operation on empty tree");
         }
-        if (_right.isEmpty()) {
+        if (_right == null) {
             return _value;
         } else {
             return _right.findMax();
