@@ -11,15 +11,18 @@ public class Main {
         // the variable avl_bst because the post insertion root that is
         // returned might change because of the insertion
 
-        for (int i=0; i<50; i++) {
-            avl_bst = avl_bst.insert((int) (Math.random()*100));
-        }
-        //avl_bst = avl_bst.insert(10);
-        //avl_bst = avl_bst.insert(20);
-        //avl_bst = avl_bst.insert(30);
-        //avl_bst = avl_bst.insert(40);
-        //avl_bst = avl_bst.insert(50);
-        //avl_bst = avl_bst.insert(25);
+        //for (int i=0; i<50; i++) {
+        //    avl_bst = avl_bst.insert((int) (Math.random()*100));
+        //}
+        avl_bst = avl_bst.insert(20);
+        avl_bst = avl_bst.insert(11);
+        avl_bst = avl_bst.insert(50);
+        avl_bst = avl_bst.insert(4);
+        avl_bst = avl_bst.insert(6);
+        avl_bst = avl_bst.insert(15);
+        avl_bst = avl_bst.insert(3);
+        avl_bst = avl_bst.insert(16);
+        avl_bst = avl_bst.insert(17);
 
 
 
