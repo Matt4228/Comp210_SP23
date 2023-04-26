@@ -3,7 +3,7 @@ package assn07;
 import java.util.*;
 
 public class PasswordManager<K,V> implements Map<K,V> {
-    private static final String MASTER_PASSWORD = "bang";
+    private static final String MASTER_PASSWORD = "password123";
     private Account[] _passwords;
 
     public PasswordManager() {
