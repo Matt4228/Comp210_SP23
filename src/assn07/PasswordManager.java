@@ -8,12 +8,14 @@ public class PasswordManager<K,V> implements Map<K,V> {
 
     public PasswordManager() {
         _passwords = new Account[50];
+        //test();
     }
 
 
     // TODO: put
     @Override
     public void put(K key, V value) {
+
         int i = Math.abs(key.hashCode()) % 50;
         if(_passwords[i] == null) {
             _passwords[i] = new Account(key, value);
@@ -46,12 +48,17 @@ public class PasswordManager<K,V> implements Map<K,V> {
             return (V) p.getPassword();
         }
         while (p.getNext() != null) {
+            p = p.getNext();
             if(p.getWebsite().equals(key)) {
                 return (V) p.getPassword();
             }
-            p = p.getNext();
         }
         return null;
+    }
+
+    public void test() {
+        Account<K,V> act = new Account("google", "bark");
+        _passwords[3] = act;
     }
 
     // TODO: size
@@ -117,7 +124,7 @@ public class PasswordManager<K,V> implements Map<K,V> {
     // TODO: checkDuplicate
     @Override
     public List<K> checkDuplicate(V value) {
-        List<K> accnts = Collections.emptyList();
+        List<K> accnts = new ArrayList<>();
         for(int i = 0; i < 50; i++) {
             if(_passwords[i] != null) {
                 Account p = _passwords[i];
@@ -125,15 +132,15 @@ public class PasswordManager<K,V> implements Map<K,V> {
                     accnts.add((K) p.getWebsite());
                 }
                 while(p.getNext() != null) {
-                    p = p.getNext();
                     if(value.equals(p.getPassword())) {
                         accnts.add((K) p.getWebsite());
                     }
+                    p = p.getNext();
                 }
             }
         }
 
-        return null;
+        return accnts;
     }
 
     // TODO: checkMasterPassword

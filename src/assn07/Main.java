@@ -1,6 +1,9 @@
 package assn07;
 
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -10,14 +13,13 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Map<String,String> passwordManager = new PasswordManager<>();
 
-
-
         // your code below
         String masterPass = "";
         while(!passwordManager.checkMasterPassword(masterPass)) {
             System.out.println("Enter Master Password");
             masterPass = scanner.nextLine();
         }
+
 
         boolean exit = false;
         while(!exit) {
@@ -44,11 +46,13 @@ public class Main {
                     break;
                 case "Check duplicate password":
                     pass = scanner.nextLine();
-                    if(passwordManager.checkDuplicate(pass).size() == 0) {
+                    List<String> dupes = new ArrayList<String>();
+                    dupes = passwordManager.checkDuplicate(pass);
+                    if(dupes.isEmpty()) {
                         System.out.println("No account uses that password");
                     } else {
-                        for(int i = 0; i < passwordManager.checkDuplicate(pass).size(); i++ ) {
-                            passwordManager.checkDuplicate(pass).get(i);
+                        for(int i = 0; i < dupes.size(); i++ ) {
+                            System.out.println(dupes.get(i));
                         }
                     }
                     break;
