@@ -132,10 +132,10 @@ public class PasswordManager<K,V> implements Map<K,V> {
                     accnts.add((K) p.getWebsite());
                 }
                 while(p.getNext() != null) {
+                    p = p.getNext();
                     if(value.equals(p.getPassword())) {
                         accnts.add((K) p.getWebsite());
                     }
-                    p = p.getNext();
                 }
             }
         }
