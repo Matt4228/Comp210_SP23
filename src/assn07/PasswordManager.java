@@ -81,7 +81,7 @@ public class PasswordManager<K,V> implements Map<K,V> {
     // TODO: keySet
     @Override
     public Set<K> keySet() {
-        Set<K> accnts = Collections.emptySet();
+        Set<K> accnts = new HashSet<>();
         for(int i = 0; i < 50; i++) {
             if(_passwords[i] != null) {
                 Account p = _passwords[i];
